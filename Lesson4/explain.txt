@@ -1,0 +1,11 @@
+Restart hay Reload trên Production?
+Tiêu chí	restart	reload
+Cơ chế	Dừng và khởi động lại Nginx	Nạp lại cấu hình
+Kết nối hiện tại	Có thể bị gián đoạn	Worker cũ tiếp tục xử lý request hiện tại
+Trải nghiệm người dùng	Có thể gặp lỗi kết nối	Hạn chế tối đa gián đoạn
+Production	Hạn chế sử dụng	Nên sử dụng
+
+Tại sao nên dùng reload?
+- restart: Dừng tiến trình Nginx rồi khởi động lại, có thể làm gián đoạn kết nối của khách hàng đang truy cập.
+- reload: Nginx tạo worker mới với cấu hình mới, worker cũ tiếp tục xử lý các kết nối hiện tại rồi mới thoát.
+Đây là cơ chế Zero-downtime reload, giúp cập nhật cấu hình mà không cần dừng toàn bộ dịch vụ.

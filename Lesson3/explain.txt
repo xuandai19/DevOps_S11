@@ -1,0 +1,37 @@
+1. Cài đặt Certbot trên Ubuntu
+sudo apt update
+sudo apt install certbot python3-certbot-nginx -y
+
+
+2. Cấp phát SSL và tự cấu hình Nginx
+sudo certbot --nginx -d api.my-ecommerce.com
+
+- Certbot xác thực domain.
+- Cấp chứng chỉ SSL Let's Encrypt.
+- Tự chỉnh sửa cấu hình Nginx để bật HTTPS.
+- Có thể chọn tự chuyển HTTP sang HTTPS khi được hỏi.
+
+3. Tự động gia hạn SSL
+Certbot thường cài sẵn systemd timer để tự động renew trên Ubuntu.
+
+Kiểm tra timer:
+sudo systemctl status certbot.timer
+
+
+Nếu chưa bật:
+sudo systemctl enable --now certbot.timer
+
+
+Kiểm tra thử gia hạn:
+sudo certbot renew --dry-run
+
+
+Nếu muốn dùng Cronjob thay thế:
+sudo crontab -e
+
+
+Thêm dòng:
+0 3 * * * certbot renew --quiet
+
+
+Chạy kiểm tra gia hạn mỗi ngày lúc 3 giờ sáng. Certbot chỉ gia hạn khi chứng chỉ cần được gia hạn, không phải mỗi lần chạy đều cấp chứng chỉ mới.

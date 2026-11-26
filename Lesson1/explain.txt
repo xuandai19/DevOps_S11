@@ -1,0 +1,4 @@
+HTTP 502 Bad Gateway
+- Nginx vẫn hoạt động nhưng không thể kết nối đến ứng dụng React tại port 3000.
+- Nginx đóng vai trò Reverse Proxy, nhận request từ Client nhưng Backend không phản hồi hoặc không thể kết nối.
+- Nginx thường trả về HTTP 502 Bad Gateway khi upstream không thể kết nối được.

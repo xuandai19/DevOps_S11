@@ -1,0 +1,4 @@
+Tại sao phải truyền X-Forwarded-For?
+- X-Forwarded-For: Giúp Backend xác định IP gốc của Client gửi request thông qua Proxy.
+- Nếu không truyền X-Forwarded-For, Backend thường chỉ nhìn thấy IP của Nginx (ví dụ 127.0.0.1 nếu Nginx và Backend giao tiếp qua loopback), thay vì IP thật của người dùng.
+- Điều này ảnh hưởng đến việc logging, kiểm tra IP, bảo mật và giới hạn request (Rate Limiting).
